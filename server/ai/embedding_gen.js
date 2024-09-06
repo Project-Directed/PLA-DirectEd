@@ -7,7 +7,7 @@ const embeddings = new GoogleGenerativeAIEmbeddings({
   model: "text-embedding-004", // 768 dimensions
 });
 
-// Function to generate embeddings
+// Function to generate embedding
 async function generateEmbeddings() {
   // Read the JSON file
   const filePath = path.join(process.cwd(), 'q2.json');
