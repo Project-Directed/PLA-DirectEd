@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema<IUserModel>({
   },
   current_level: {
     type: Number,
-    default: 1,
+    default: 0,
   },
   points: {
     type: Number,

@@ -1,0 +1,218 @@
+{
+  "plans": [
+    {
+      "name": ["Cytoskeleton", "Microfilaments", "Microtubules"],
+      "questions": [
+        {
+          "_id": "66dac5bb62971efbd25fd42c",
+          "subject": "Biology",
+          "question_text": "Which component of the cytoskeleton is involved in the movement of chromosomes during cell division?",
+          "topic": "Cell Structure",
+          "subtopic": "Microtubules",
+          "answer_options": {
+            "A": "Microtubules",
+            "B": "Intermediate filaments",
+            "C": "Microfilaments",
+            "D": "Centrioles"
+          },
+          "correct_option": "A",
+          "explanation": "Microtubules form the spindle fibers that attach to chromosomes and pull them apart during cell division.",
+          "intensity": 0.6,
+          "expected_response_time": 25,
+          "normalized_response_time": 0.4
+        },
+        {
+          "_id": "66dac5bb62971efbd25fd43e",
+          "subject": "Biology",
+          "question_text": "Which component of the cytoskeleton is involved in the movement of cilia and flagella?",
+          "topic": "Cell Structure",
+          "subtopic": "Microtubules",
+          "answer_options": {
+            "A": "Microfilaments",
+            "B": "Intermediate filaments",
+            "C": "Microtubules",
+            "D": "Actin filaments"
+          },
+          "correct_option": "C",
+          "explanation": "Microtubules form the internal structure of cilia and flagella, arranged in a 9 + 2 pattern, which enables their movement.",
+          "intensity": 0.6,
+          "expected_response_time": 25,
+          "normalized_response_time": 0.4
+        },
+        {
+          "_id": "66dac5bb62971efbd25fd42a",
+          "subject": "Biology",
+          "question_text": "Which component of the cytoskeleton is involved in muscle contraction?",
+          "topic": "Cell Structure",
+          "subtopic": "Microfilaments",
+          "answer_options": {
+            "A": "Microtubules",
+            "B": "Intermediate filaments",
+            "C": "Microfilaments",
+            "D": "Centrioles"
+          },
+          "correct_option": "C",
+          "explanation": "Microfilaments, made of the protein actin, interact with the motor protein myosin to generate the force needed for muscle contraction.",
+          "intensity": 0.4,
+          "expected_response_time": 15,
+          "normalized_response_time": 0.2
+        },
+        {
+          "_id": "66dac5bb62971efbd25fd436",
+          "subject": "Biology",
+          "question_text": "What is the gel-like substance that fills the region between the plasma membrane and the nucleus in eukaryotic cells?",
+          "topic": "Cell Structure",
+          "subtopic": "The Cytoplasm",
+          "answer_options": {
+            "A": "Nucleoplasm",
+            "B": "Cytosol",
+            "C": "Stroma",
+            "D": "Matrix"
+          },
+          "correct_option": "B",
+          "explanation": "Cytosol is the fluid portion of the cytoplasm, containing dissolved molecules, ions, and the cytoskeleton, providing a medium for cellular processes.",
+          "intensity": 0.4,
+          "expected_response_time": 20,
+          "normalized_response_time": 0.3
+        },
+        {
+          "_id": "66dac5bb62971efbd25fd42b",
+          "subject": "Biology",
+          "question_text": "Which cytoskeletal element provides structural support and helps maintain the shape of the cell?",
+          "topic": "Cell Structure",
+          "subtopic": "Intermediate Filaments",
+          "answer_options": {
+            "A": "Microtubules",
+            "B": "Intermediate filaments",
+            "C": "Microfilaments",
+            "D": "Flagella"
+          },
+          "correct_option": "B",
+          "explanation": "Intermediate filaments are strong, fibrous proteins that provide mechanical support and help maintain cell shape, acting like a scaffolding within the cell.",
+          "intensity": 0.5,
+          "expected_response_time": 20,
+          "normalized_response_time": 0.3
+        },
+        {
+          "_id": "66dac5bb62971efbd25fd43c",
+          "subject": "Biology",
+          "question_text": "Which of the following is NOT a function of the cytoskeleton?",
+          "topic": "Cell Structure",
+          "subtopic": "Microfilaments",
+          "answer_options": {
+            "A": "Maintaining cell shape",
+            "B": "Facilitating cellular movement",
+            "C": "Anchoring organelles",
+            "D": "Synthesizing proteins"
+          },
+          "correct_option": "D",
+          "explanation": "Protein synthesis is the function of ribosomes, not the cytoskeleton. The cytoskeleton provides structural support, aids in movement, and helps organize organelles within the cell.",
+          "intensity": 0.5,
+          "expected_response_time": 20,
+          "normalized_response_time": 0.3
+        },
+        {
+          "_id": "66dac5bb62971efbd25fd42d",
+          "subject": "Biology",
+          "question_text": "What is the name of the long, hair-like structures that extend from the plasma membrane and are used for cellular locomotion?",
+          "topic": "Cell Structure",
+          "subtopic": "Flagella and Cilia",
+          "answer_options": {
+            "A": "Microvilli",
+            "B": "Cilia",
+            "C": "Flagella",
+            "D": "Pili"
+          },
+          "correct_option": "C",
+          "explanation": "Flagella are long, whip-like structures that propel cells through their environment, while cilia are shorter, hair-like structures involved in movement or moving substances along the cell surface.",
+          "intensity": 0.4,
+          "expected_response_time": 15,
+          "normalized_response_time": 0.2
+        },
+        {
+          "_id": "66dac5bb62971efbd25fd435",
+          "subject": "Biology",
+          "question_text": "What is the name for the finger-like projections on the plasma membrane of cells specialized in absorption, such as those lining the small intestine?",
+          "topic": "Cell Structure",
+          "subtopic": "The Plasma Membrane",
+          "answer_options": {
+            "A": "Flagella",
+            "B": "Cilia",
+            "C": "Microvilli",
+            "D": "Pseudopods"
+          },
+          "correct_option": "C",
+          "explanation": "Microvilli are small, finger-like extensions of the plasma membrane that increase the surface area available for absorption, as seen in the lining of the small intestine.",
+          "intensity": 0.7,
+          "expected_response_time": 30,
+          "normalized_response_time": 0.5
+        },
+        {
+          "_id": "66dac5bb62971efbd25fd446",
+          "subject": "Biology",
+          "question_text": "What is the function of the extracellular matrix in animal cells?",
+          "topic": "Cell Structure",
+          "subtopic": "Extracellular Matrix of Animal Cells",
+          "answer_options": {
+            "A": "Protein synthesis",
+            "B": "Energy production",
+            "C": "Providing structural support and facilitating cell communication",
+            "D": "DNA replication"
+          },
+          "correct_option": "C",
+          "explanation": "The extracellular matrix (ECM) is a network of proteins and carbohydrates outside the cell that provides structural support, cell adhesion, and signals that influence cell behavior.",
+          "intensity": 0.7,
+          "expected_response_time": 30,
+          "normalized_response_time": 0.5
+        },
+        {
+          "_id": "66dac5bb62971efbd25fd41c",
+          "subject": "Biology",
+          "question_text": "What is the primary function of fimbriae in prokaryotic cells?",
+          "topic": "Cell Structure",
+          "subtopic": "Prokaryotic Cells",
+          "answer_options": {
+            "A": "Locomotion",
+            "B": "Exchange of genetic material",
+            "C": "Attachment to surfaces",
+            "D": "Attachment to a host cell"
+          },
+          "correct_option": "D",
+          "explanation": "Fimbriae are short, hair-like appendages on the surface of prokaryotic cells that allow them to attach to host cells.",
+          "intensity": 0.6,
+          "expected_response_time": 20,
+          "normalized_response_time": 0.3
+        }
+      ],
+      "notes": [
+        {
+          "_id": "66dae49b21973c447b7bfbb7",
+          "title": "The Cytoskeleton: A Dynamic Framework for Cell Structure and Movement",
+          "topic": [
+            "Cytoskeleton",
+            "Microfilaments",
+            "Intermediate Filaments",
+            "Microtubules",
+            "Flagella and Cilia"
+          ],
+          "content": "The cytoskeleton is a dynamic network of protein fibers that provides structural support, facilitates cell movement, and plays a crucial role in cell division. It is composed of three main types of fibers: microfilaments, intermediate filaments, and microtubules.  Microfilaments, the thinnest fibers, are made of the protein actin and are involved in cell movement, muscle contraction, and maintaining cell shape. Intermediate filaments are strong, fibrous proteins that provide mechanical support and anchor organelles.  Microtubules, the thickest fibers, are hollow tubes made of tubulin and function in cell division, providing tracks for vesicle movement, and forming structures like flagella and cilia. Flagella are long, whip-like structures used for cell locomotion, while cilia are shorter, hair-like structures involved in movement or moving substances along the cell surface.  The coordinated interplay of these cytoskeletal elements is essential for a wide range of cellular processes."
+        },
+        {
+          "_id": "66dae49b21973c447b7bfbb8",
+          "title": "Microfilaments: Driving Cellular Movement and Shape",
+          "topic": ["Cytoskeleton", "Microfilaments"],
+          "content": "Microfilaments, also known as actin filaments, are the thinnest components of the cytoskeleton, with a diameter of about 7 nm. They are composed of two intertwined strands of the protein actin, which assembles into filaments powered by ATP.  Microfilaments play a crucial role in various cellular movements, including muscle contraction, cell division, and cytoplasmic streaming in plants. They interact with the motor protein myosin to generate force for contraction and movement.  In muscle cells, the sliding of actin and myosin filaments past each other leads to muscle contraction.  Microfilaments also contribute to cell shape and rigidity, particularly in the cell cortex, the region beneath the plasma membrane. Their ability to rapidly assemble and disassemble allows cells to change shape and move dynamically, as seen in the amoeboid movement of white blood cells."
+        },
+        {
+          "_id": "66dae49b21973c447b7bfbba",
+          "title": "Microtubules: Guiding Intracellular Transport and Cell Division",
+          "topic": ["Cytoskeleton", "Microtubules"],
+          "content": "Microtubules are the largest components of the cytoskeleton, with a diameter of about 25 nm. They are hollow tubes formed by the polymerization of tubulin protein dimers. Microtubules play vital roles in maintaining cell shape, facilitating intracellular transport, and orchestrating chromosome movement during cell division. They act as tracks for motor proteins, such as kinesin and dynein, which transport vesicles and organelles throughout the cytoplasm. Microtubules also form the spindle fibers that separate chromosomes during mitosis and meiosis.  In addition to these functions, microtubules are the structural components of cilia and flagella, specialized structures involved in cell motility."
+        }
+      ],
+      "createdAt": "2024-09-06T16:07:30.336Z",
+      "_id": "66db28d9a074cddb7e9a191f",
+      "__v": 0
+    }
+  ]
+}
