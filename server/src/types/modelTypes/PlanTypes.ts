@@ -1,6 +1,7 @@
 export interface IPlan {
     name: string[];
     questions: object[];
-    createdAt: Date;
+    notes: object[];
+    createdAt?: Date;
     completedAt?: Date;
 }

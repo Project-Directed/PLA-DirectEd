@@ -4,7 +4,7 @@ import { config } from "../config";
 import { IUser } from "../types/modelTypes/UserType";
 import Plan from "./Plans";
 
-interface IUserModel extends IUser, mongoose.Document {}
+interface IUserModel extends IUser, Document {}
 
 
 const userSchema = new mongoose.Schema<IUserModel>({

@@ -12,6 +12,10 @@ const PlanSchema = new mongoose.Schema<IPlanSchema>({
     type: [Object],
     required: true,
   },
+  notes: {
+    type: [Object],
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
