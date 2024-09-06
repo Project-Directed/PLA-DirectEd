@@ -1,0 +1,62 @@
+{
+  "subject": "Biology",
+  "chapters": [
+    {
+      "chapter": "Cell Structure",
+      "topics": [
+        { "name": "Introduction to Cells" },
+        {
+          "name": "Prokaryotic Cells",
+          "subtopics": ["Components of Prokaryotic Cells", "Cell Size"]
+        },
+        {
+          "name": "Eukaryotic Cells",
+          "subtopics": [
+            "The Plasma Membrane",
+            "The Cytoplasm",
+            "The Nucleus",
+            "The Nuclear Envelope",
+            "Chromatin and Chromosomes",
+            "The Nucleolus",
+            "Ribosomes",
+            "Mitochondria",
+            "Peroxisomes",
+            "Vesicles and Vacuoles",
+            "Animal Cells versus Plant Cells",
+            "The Centrosome",
+            "Lysosomes",
+            "The Cell Wall",
+            "Chloroplasts",
+            "The Central Vacuole"
+          ]
+        },
+        {
+          "name": "The Endomembrane System and Proteins",
+          "subtopics": [
+            "The Endoplasmic Reticulum",
+            "Rough ER",
+            "Smooth ER",
+            "The Golgi Apparatus",
+            "Lysosomes"
+          ]
+        },
+        { "name": "Cytoskeleton" },
+        { "name": "Microfilaments" },
+        { "name": "Intermediate Filaments" },
+        { "name": "Microtubules" },
+        { "name": "Flagella and Cilia" },
+        {
+          "name": "Connections Between Cells and Cellular Activities",
+          "subtopics": [
+            "Extracellular Matrix of Animal Cells",
+            "Intercellular Junctions",
+            "Plasmodesmata",
+            "Tight Junctions",
+            "Desmosomes",
+            "Gap Junctions"
+          ]
+        }
+      ]
+    }
+  ]
+}
