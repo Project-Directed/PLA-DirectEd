@@ -10,6 +10,8 @@ const ROUNDS: number = parseInt(`${process.env.ROUNDS}`) || 10;
 
 const JWT_SECRET: string = `${process.env.JWT_SECRET}`;
 
+const GOOGLE_API_KEY = `${process.env.GOOGLE_API_KEY}`;
+
 export const config = {
   mongodb: {
     url: MONGO_URI,
@@ -21,4 +23,9 @@ export const config = {
   jwt: {
     secret: JWT_SECRET,
   },
+  api: {
+    google: {
+      key: GOOGLE_API_KEY,
+    },
+  }
 };
