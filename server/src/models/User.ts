@@ -1,22 +1,11 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import { config } from "../config";
-import { IPlan, IUser } from "../types/modelTypes/UserType";
-import Question from "./Questions";
+import { IUser } from "../types/modelTypes/UserType";
+import Plan from "./Plans";
 
 interface IUserModel extends IUser, mongoose.Document {}
-interface IPlanSchema extends IPlan {}
 
-const PlanSchema = new mongoose.Schema<IPlanSchema>({
-  num_of_questions: {
-    type: Number,
-    required: true,
-  },
-  question_ids: {
-    type: [String],
-    required: true,
-  },
-});
 
 const userSchema = new mongoose.Schema<IUserModel>({
   full_name: {
@@ -50,7 +39,7 @@ const userSchema = new mongoose.Schema<IUserModel>({
     type: Number,
     default: 0,
   },
-  completed_questions: [Question.schema],
+  completed_questions: [String],
   avg_response_time: {
     type: Number,
     default: 0,
@@ -59,7 +48,7 @@ const userSchema = new mongoose.Schema<IUserModel>({
     type: Number,
     default: 0,
   },
-  plans: [PlanSchema],
+  plans: [Plan.schema],
   createdAt: {
     type: Date,
     default: Date.now(),

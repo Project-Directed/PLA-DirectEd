@@ -3,7 +3,7 @@ import { UserTypes } from "../allTypes";
 export interface IUser extends UserTypes {
     current_level: number;
     points: number;
-    completed_questions: object[];
+    completed_questions: string[];
     avg_response_time: number;
     avg_intensity: number;
     plans: object[];
@@ -11,7 +11,3 @@ export interface IUser extends UserTypes {
     updatedAt: Date;
 }
 
-export interface IPlan {
-    num_of_questions: number;
-    question_ids: string[];
-}
