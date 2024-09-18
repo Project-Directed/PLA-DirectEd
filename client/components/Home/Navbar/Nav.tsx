@@ -3,6 +3,10 @@
 import React from "react";
 import Link from "next/link";
 import { HiBars3BottomRight } from "react-icons/hi2";
+
+import axios from "axios";
+import { useRouter } from "next/navigation"; // Import useRouter
+
 // import SearchBar from '@/components/Helper/SearchBar'; // Import SearchBar
 // import Profile from '@/components/Helper/Profile'; // Import Profile
 import {
@@ -11,13 +15,23 @@ import {
   getDataFromLocalStorage,
 } from "@/constant/constant";
 import Profile from "@/components/Helper/Profile";
+import { axiosInstance } from "@/config/axiosInstnace";
+
 
 type Props = {
   openNav: () => void;
   openSignIn: () => void;
 };
 
+
 const Nav = ({ openNav, openSignIn }: Props) => {
+  const router = useRouter()
+  const handleLogout =()=>{
+    localStorage.removeItem('user-plans')
+    localStorage.removeItem('app-user')
+    axiosInstance.post('/api/auth/logout')
+    router.push('/')
+  }
   return (
     // Sticky navigation bar at the top
     <div className="fixed top-0 bg-custom-green-dark w-full z-[1000]">
@@ -36,7 +50,10 @@ const Nav = ({ openNav, openSignIn }: Props) => {
                 </Link>
               ))}
 
-              <Profile />
+              <button onClick={handleLogout}>logout</button>
+  <Profile />
+              {/* router.push("/Profile"); // Navigate to the Daily Study page */}
+
             </>
           ) : (
             <>

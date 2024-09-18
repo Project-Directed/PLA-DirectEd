@@ -13,6 +13,7 @@
     "@langchain/google-genai": "^0.0.26",
     "axios": "^1.7.7",
     "framer-motion": "^11.5.4",
+    "js-cookie": "^3.0.5",
     "langchain": "^0.2.18",
     "next": "14.2.7",
     "react": "^18",

@@ -48,7 +48,7 @@ const login = async (req: Request, res: Response) => {
             full_name: user.full_name,
             email: user.email,
             username: user.username,
-            token
+            token: token
           });
       } 
     } else {

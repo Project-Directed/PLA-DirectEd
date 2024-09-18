@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation"; // Import useRouter
+import useAnalyseResult from "@/hooks/useAnalyseResult";
 
 interface Question {
   _id: string;
@@ -15,6 +16,7 @@ interface Question {
   intensity?: number;
   expected_response_time?: number;
   normalized_response_time?: number;
+  selected_option?: string; // Store user's selected option
 }
 
 interface UserAnswer {
@@ -31,14 +33,15 @@ interface ReviewResultProps {
 const ReviewResult: React.FC<ReviewResultProps> = ({ onClose }) => {
   const searchParams = useSearchParams();
   const router = useRouter(); // Initialize useRouter
-  const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([]);
+  const [planId, setPlanId] = useState<string | null>(null);
+  const [userAnswers, setUserAnswers] = useState<Question[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [showRecommendation, setShowRecommendation] = useState(false);
   const [recommendation, setRecommendation] = useState<any>(null);
   const [showFullContent, setShowFullContent] = useState(false); // State to control content view
-  
+  const [{isLoading, error}, analyseResult] = useAnalyseResult()
+
   const index = Number(searchParams.get("index"))
-  console.log(typeof index)
   useEffect(() => {
     const loadQuestionsFromLocalStorage = () => {
       const storedData = localStorage.getItem('user-plans');
@@ -48,7 +51,6 @@ const ReviewResult: React.FC<ReviewResultProps> = ({ onClose }) => {
           
           // Access the nested questions array
           const questions = parsedData[index]?.questions || [];
-          console.log(questions)
           
           if (questions.length > 0) {
             setQuestions(questions);
@@ -68,25 +70,24 @@ const ReviewResult: React.FC<ReviewResultProps> = ({ onClose }) => {
 
   useEffect(() => {
     const answersParam = searchParams.get("answers");
+    const planIdParam = searchParams.get("id");
     if (answersParam) {
       try {
         const parsedAnswers = JSON.parse(decodeURIComponent(answersParam));
         setUserAnswers(parsedAnswers);
+        setPlanId(planIdParam);
       } catch (error) {
         console.error("Error parsing user answers:", error);
       }
     }
   }, [searchParams]);
-
   const fetchRecommendation = async () => {
+    const planIdParam = searchParams.get("id");
+    console.log(planIdParam)
     try {
-      const response = await fetch("/Ai.json"); // Corrected path to Ai.json
-      if (!response.ok) {
-        throw new Error("Failed to fetch recommendation");
-      }
-      const data = await response.json();
-      console.log("Recommendation fetched:", data); // Debug log to confirm fetching
-      setRecommendation(data);
+      const response: any = analyseResult(userAnswers, planIdParam as string) // Debug log to confirm fetching
+      // setRecommendation(response.data);
+      console.log(response.data);
       setShowRecommendation(true); // Show the recommendation popup
     } catch (error) {
       console.error("Error fetching recommendation:", error);
@@ -113,7 +114,7 @@ const ReviewResult: React.FC<ReviewResultProps> = ({ onClose }) => {
         {questions.length > 0 ? (
           questions.map((question, index) => {
             const userAnswer = userAnswers.find(
-              (ans) => ans.questionId === question._id
+              (ans) => ans._id === question._id
             );
 
             return (
@@ -129,7 +130,7 @@ const ReviewResult: React.FC<ReviewResultProps> = ({ onClose }) => {
                         className={`text-lg ${
                           key === question.correct_option
                             ? "text-custom-green-dark font-bold"
-                            : userAnswer?.selectedOption === key
+                            : userAnswer?.selected_option === key
                             ? "text-red-500 font-semibold"
                             : "text-gray-700"
                         }`}
@@ -139,13 +140,13 @@ const ReviewResult: React.FC<ReviewResultProps> = ({ onClose }) => {
                     )
                   )}
                 </ul>
-                {userAnswer?.selectedOption !== question.correct_option && (
+                {userAnswer?.selected_option !== question.correct_option && (
                   <p className="mt-2 text-sm text-gray-500">
                     Explanation: {question.explanation}
                   </p>
                 )}
                 <p className="mt-2 text-sm text-gray-600">
-                  Your Answer: {userAnswer?.selectedOption || "No answer"}
+                  Your Answer: {userAnswer?.selected_option || "No answer"}
                 </p>
               </div>
             );

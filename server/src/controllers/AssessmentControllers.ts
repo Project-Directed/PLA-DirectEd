@@ -88,6 +88,12 @@ const evaluateAssessment = async (req: AuthRequested, res: Response) => {
   if (!user) {
     return res.status(401).json({ message: "User not authenticated" });
   }
+
+
+
+  const answer = user_responses as Answer[];
+
+
   //filters the user response to find the plan that match the id
   const filteredPlans = user_responses.filter((user_response: UserResponsePlan) => user_response._id === id);
   const selectedPlan = filteredPlans.length > 0 ? filteredPlans[0] : undefined;
@@ -97,6 +103,7 @@ const evaluateAssessment = async (req: AuthRequested, res: Response) => {
   }
   //extracts the questions
   const answer = selectedPlan.questions as Answer[];
+
 
   try {
     const answerEvalResult = analyzeAnswer(answer);

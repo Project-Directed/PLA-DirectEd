@@ -19,16 +19,20 @@ export interface Question {
   expected_response_time?: number;
   normalized_response_time?: number;
   user_response_time?: number; // Store user response time
+  selected_option?: string; // Store user's selected option
+
 }
 
 const Quiz: React.FC<{ onReview: () => void, questionWidth?: string }> = ({ onReview, questionWidth = 'w-full' }) => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+  const [selected_option, setSelected_option] = useState<string | null>(null);
   const [quizFinished, setQuizFinished] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [userAnswers, setUserAnswers] = useState<
-    { questionId: string; selectedOption: string }[]
+    { questionId: string; selected_option: string }[]
+
   >([]);
   const [startTime, setStartTime] = useState<number>(0);
   
@@ -60,42 +64,50 @@ const Quiz: React.FC<{ onReview: () => void, questionWidth?: string }> = ({ onRe
   }, [index]);
 
   const handleOptionClick = (option: string) => {
-    if (selectedOption === null) setSelectedOption(option);
+
+    if (selected_option === null) setSelected_option(option);
   };
 
   const handleNextQuestion = useCallback(() => {
-    if (selectedOption === null) return;
+    if (selected_option === null) return;
 
     const responseTime = Math.round((Date.now() - startTime) / 1000);
 
-    // Update the current question with the user's response time
+    // Update the current question with the user's response time and selected option
     const updatedQuestions = [...questions];
     updatedQuestions[currentQuestion].user_response_time = responseTime;
+    updatedQuestions[currentQuestion].selected_option = selected_option;
+
     setQuestions(updatedQuestions);
 
     // Store selected answer
     setUserAnswers((prevAnswers) => [
       ...prevAnswers,
-      { questionId: questions[currentQuestion]._id, selectedOption },
+      { questionId: questions[currentQuestion]._id, selected_option },
     ]);
 
     // Move to the next question or finish the quiz
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
-      setSelectedOption(null);
+
+      setSelected_option(null);
+
       setStartTime(Date.now()); // Reset timer for the new question
     } else {
       setQuizFinished(true);
       console.log(questions)
       setShowResult(true);
     }
-  }, [selectedOption, startTime, questions, currentQuestion]);
+  }, [selected_option, startTime, questions, currentQuestion]);
+
 
   const handlePreviousQuestion = () => {
     if (currentQuestion > 0) {
       setCurrentQuestion((prev) => prev - 1);
-      setSelectedOption(
-        userAnswers[currentQuestion - 1]?.selectedOption || null
+
+      setSelected_option(
+        userAnswers[currentQuestion - 1]?.selected_option || null
+
       );
     }
   };
@@ -104,7 +116,7 @@ const Quiz: React.FC<{ onReview: () => void, questionWidth?: string }> = ({ onRe
     setCurrentQuestion(0);
     setQuizFinished(false);
     setUserAnswers([]);
-    setSelectedOption(null);
+    setSelected_option(null);
     setShowResult(false);
   };
 
@@ -113,16 +125,21 @@ const Quiz: React.FC<{ onReview: () => void, questionWidth?: string }> = ({ onRe
     if (!storedData) return;
     const parsedData = JSON.parse(storedData);
     const planId = parsedData[index]?._id || "";
-    const userAnswersQuery = encodeURIComponent(JSON.stringify(userAnswers));
+
+    const userAnswersQuery = encodeURIComponent(JSON.stringify(questions));
     analyseResult(questions, planId)
-    router.push(`/review-result?answers=${userAnswersQuery}`);
+    console.log(questions)
+    router.push(`/review-result?answers=${userAnswersQuery}?id=${planId}`);
+
     onReview();
   };
 
   const calculateScore = () => {
     return userAnswers.filter(
       (ans) =>
-        ans.selectedOption ===
+
+        ans.selected_option ===
+
         questions.find((q) => q._id === ans.questionId)?.correct_option
     ).length;
   };
@@ -140,7 +157,9 @@ const Quiz: React.FC<{ onReview: () => void, questionWidth?: string }> = ({ onRe
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [handleNextQuestion, currentQuestion, selectedOption]);
+
+  }, [handleNextQuestion, currentQuestion, selected_option]);
+
 
   if (questions.length === 0) {
     return <p>Loading questions...</p>;
@@ -168,7 +187,9 @@ const Quiz: React.FC<{ onReview: () => void, questionWidth?: string }> = ({ onRe
               key={key}
               onClick={() => handleOptionClick(key)}
               className={`w-full px-4 py-2 text-left border rounded-md ${
-                selectedOption === key
+
+                selected_option === key
+
                   ? "bg-custom-green-dark text-white"
                   : "bg-white text-gray-800"
               } border-custom-green-dark hover:bg-custom-green-dark hover:text-white transition-colors duration-300`}
@@ -197,7 +218,7 @@ const Quiz: React.FC<{ onReview: () => void, questionWidth?: string }> = ({ onRe
         ) : (
           <button
             onClick={handleNextQuestion}
-            disabled={selectedOption === null}
+            disabled={selected_option === null}
             className="px-4 py-2 bg-custom-green-dark text-white rounded-md shadow-md hover:bg-custom-green transition-colors duration-300 flex items-center justify-center"
           >
             <span className="mr-2">Next Question</span>
