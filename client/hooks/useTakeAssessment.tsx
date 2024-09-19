@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast'
 import { axiosInstance } from '@/config/axiosInstnace'
-
+import Cookies from 'js-cookie';
 interface useTakeAssesmentResult {
     isLoading: boolean;
     error: string | null;
@@ -14,6 +14,26 @@ const useTakeAssesment = (): [
 ] => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [token, setToken] = useState<string | null>(null)
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem("app-user");
+        if (storedToken) {
+          try {
+            const parsedData = JSON.parse(storedToken);
+            const getToken = parsedData?.token || null;
+            if (getToken) {
+              setToken(getToken);
+            } else {
+              console.error("couldn't get token.");
+            }
+          } catch (error) {
+            console.error("Error parsing data:", error);
+          }
+        } else {
+          console.error("no token found");
+        }
+      }, []);
     //navigation from next
     const router = useRouter();
     //responsible for starting the assesment
@@ -22,10 +42,13 @@ const useTakeAssesment = (): [
         setError(null);
         const arrayToBeSent = [topic]
         try {
+            // const token = localStorage.getItem('token');
             const body = {
-                topics: arrayToBeSent
+                topics: arrayToBeSent,
+                token: token
             }
-            console.log("requesting....")
+            console.log(token)
+
             const response = await axiosInstance.post(`/api/assessment/create`, body);
 
             if (!response) {

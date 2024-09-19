@@ -11,7 +11,7 @@ const useLogout = ():[() => Promise<void>] => {
     const router = useRouter();
 
     const logout = async () => {
-
+        //put axios call here to logout
         setAuthUser(null);
         localStorage.removeItem('app-user');
         setIsAuthenticated(false);

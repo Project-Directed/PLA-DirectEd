@@ -30,7 +30,7 @@ const useLogin = ():[
                 email,
                 password,
             }
-            const response = await axios.post(`${config.apiUrl}/api/auth/login`, body, {
+            const response = await axios.post(`api/auth/login`, body, {
                 withCredentials: true,
             });
             // console.log("requesting server", response)

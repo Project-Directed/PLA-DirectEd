@@ -91,7 +91,6 @@ const evaluateAssessment = async (req: AuthRequested, res: Response) => {
 
 
 
-  const answer = user_responses as Answer[];
 
 
   //filters the user response to find the plan that match the id
