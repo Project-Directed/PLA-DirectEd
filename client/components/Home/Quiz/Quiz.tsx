@@ -126,10 +126,10 @@ const Quiz: React.FC<{ onReview: () => void, questionWidth?: string }> = ({ onRe
     const parsedData = JSON.parse(storedData);
     const planId = parsedData[index]?._id || "";
 
-    const userAnswersQuery = encodeURIComponent(JSON.stringify(questions));
+    const userAnswersQuery = encodeURIComponent(JSON.stringify(userAnswers));
     analyseResult(questions, planId)
     console.log(questions)
-    router.push(`/review-result?answers=${userAnswersQuery}?id=${planId}`);
+    router.push(`/review-result?answers=${userAnswersQuery}&index=${index}`);
 
     onReview();
   };

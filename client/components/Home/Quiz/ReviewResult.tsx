@@ -1,5 +1,4 @@
-"use client";
-
+'use-client'
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation"; // Import useRouter
 import useAnalyseResult from "@/hooks/useAnalyseResult";
@@ -21,20 +20,23 @@ interface Question {
 
 interface UserAnswer {
   questionId: string;
-  selectedOption: string;
+  selected_option: string;
 }
 
 interface ReviewResultProps {
   onClose: () => void;
 }
 
-
+const cleanJSONString = (jsonString: string): string => {
+  // Remove unwanted characters (e.g., backslashes, newlines, etc.)
+  return jsonString.replace(/\\n|\\r|\\t|\\/g, '');
+};
 
 const ReviewResult: React.FC<ReviewResultProps> = ({ onClose }) => {
   const searchParams = useSearchParams();
   const router = useRouter(); // Initialize useRouter
   const [planId, setPlanId] = useState<string | null>(null);
-  const [userAnswers, setUserAnswers] = useState<Question[]>([]);
+  const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [showRecommendation, setShowRecommendation] = useState(false);
   const [recommendation, setRecommendation] = useState<any>(null);
@@ -68,26 +70,28 @@ const ReviewResult: React.FC<ReviewResultProps> = ({ onClose }) => {
     loadQuestionsFromLocalStorage();
   }, []);
 
-  useEffect(() => {
+useEffect(() => {
     const answersParam = searchParams.get("answers");
-    const planIdParam = searchParams.get("id");
     if (answersParam) {
       try {
         const parsedAnswers = JSON.parse(decodeURIComponent(answersParam));
+        console.log(parsedAnswers)
         setUserAnswers(parsedAnswers);
-        setPlanId(planIdParam);
       } catch (error) {
         console.error("Error parsing user answers:", error);
       }
     }
   }, [searchParams]);
-  const fetchRecommendation = async () => {
-    const planIdParam = searchParams.get("id");
-    console.log(planIdParam)
+
+const fetchRecommendation = async () => {
     try {
-      const response: any = analyseResult(userAnswers, planIdParam as string) // Debug log to confirm fetching
-      // setRecommendation(response.data);
-      console.log(response.data);
+      const response = await fetch("/Ai.json"); // Corrected path to Ai.json
+      if (!response.ok) {
+        throw new Error("Failed to fetch recommendation");
+      }
+      const data = await response.json();
+      console.log("Recommendation fetched:", data); // Debug log to confirm fetching
+      setRecommendation(data);
       setShowRecommendation(true); // Show the recommendation popup
     } catch (error) {
       console.error("Error fetching recommendation:", error);
@@ -114,7 +118,7 @@ const ReviewResult: React.FC<ReviewResultProps> = ({ onClose }) => {
         {questions.length > 0 ? (
           questions.map((question, index) => {
             const userAnswer = userAnswers.find(
-              (ans) => ans._id === question._id
+              (ans) => ans.questionId === question._id
             );
 
             return (
@@ -223,6 +227,7 @@ const ReviewResult: React.FC<ReviewResultProps> = ({ onClose }) => {
       </div>
     </div>
   );
+
 };
 
 export default ReviewResult;
